@@ -5,13 +5,13 @@ from firebase_admin import firestore
 
 from xlrd import open_workbook
 
-cred = credentials.Certificate("service_account.json")
+cred = credentials.Certificate("path/to/service_account.json")
 firebase_admin.initialize_app(cred)
 
 db = firestore.client()
 
 
-wb = open_workbook("stock_names.xlsx")
+wb = open_workbook("path/to/filename.xlsx")
 
 values = []
 for sheet in wb.sheets():
@@ -25,7 +25,7 @@ for sheet in wb.sheets():
             except:
                 pass
             col_value[name.value] = value
-        db.collection("StockNames").add(col_value)
+        db.collection("CollectionName").add(col_value)
         values.append(col_value)
 
 
